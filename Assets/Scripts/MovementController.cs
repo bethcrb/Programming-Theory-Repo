@@ -16,6 +16,7 @@ public class MovementController : MonoBehaviour
     void Update()
     {
         MoveObjectPosition();
+        DestroyOutOfBounds();
     }
 
     void MoveObjectPosition()
@@ -28,6 +29,10 @@ public class MovementController : MonoBehaviour
         {
             objectRb.AddForce(Vector3.forward * -speed);
         }
+    }
+
+    void DestroyOutOfBounds()
+    {
         if (transform.position.z > zDestroy || transform.position.z < -zDestroy)
         {
             Destroy(gameObject);
