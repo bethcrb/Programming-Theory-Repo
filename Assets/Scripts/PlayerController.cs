@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
         ConstrainPlayerPosition();
     }
 
+    // Moves the player based on arrow key input
     void MovePlayer()
     {
         float horizontalInput = Input.GetAxis("Horizontal");
@@ -29,6 +30,7 @@ public class PlayerController : MonoBehaviour
         playerRb.AddForce(Vector3.right * speed * horizontalInput);
     }
 
+    // Prevent the player from leaving the top or bottom of the screen
     void ConstrainPlayerPosition()
     {
         if (transform.position.z < -zBound)
