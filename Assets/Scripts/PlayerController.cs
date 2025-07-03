@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -58,8 +59,24 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            Enemy.DealDamage(10);
-            Debug.Log("Player has collided with enemy");
+            String enemyName = collision.gameObject.name.ToString();
+            if (enemyName == "Enemy 1(Clone)")
+            {
+                Car car = collision.gameObject.GetComponent<Car>();
+                car.DealDamage();
+            }
+            else if (enemyName == "Enemy 2(Clone)")
+            {
+                Van van = collision.gameObject.GetComponent<Van>();
+                van.DealDamage();
+            }
+            else if (enemyName == "Enemy 3(Clone)")
+            {
+                Bus bus = collision.gameObject.GetComponent<Bus>();
+                bus.DealDamage();
+            }
+            
+            Debug.Log("Player has collided with " + enemyName);
         }
     }
 }

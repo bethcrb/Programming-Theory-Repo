@@ -1,16 +1,17 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    private GameObject player;
+    protected PlayerController playerController;
 
     void Start()
     {
-        player = GameObject.Find("Player");
+        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
-    public virtual void DealDamage(int damage)
+    public virtual void DealDamage()
     {
-        player.UpdateHealth(damage);
+        playerController.health -= 5;
     }
 }
