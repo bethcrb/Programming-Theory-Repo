@@ -21,14 +21,7 @@ public class MovementController : MonoBehaviour
 
     void MoveObjectPosition()
     {
-        if (transform.position.x > 0)
-        {
-            objectRb.AddForce(Vector3.forward * speed);
-        }
-        else
-        {
-            objectRb.AddForce(Vector3.forward * -speed);
-        }
+        objectRb.AddForce(Vector3.forward * -speed);
     }
 
     void DestroyOutOfBounds()
