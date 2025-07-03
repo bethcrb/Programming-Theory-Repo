@@ -7,15 +7,13 @@ public class SpawnManager : MonoBehaviour
     public GameObject powerup;
 
     private float zEnemySpawn = 4.0f;
-    private float xSpawnMin = 1.0f;
-    private float xSpawnMax = 6.0f;
     private float xSpawnRange = 6.0f;
     private float ySpawn = 0.5f;
     private float zPowerupRange = 5.0f;
 
     private float powerupSpawnTime = 5.0f;
     private float enemySpawnTime = 2.0f;
-    private float startDelay = 1.0f;
+    private float startDelay = 2.0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -32,10 +30,10 @@ public class SpawnManager : MonoBehaviour
 
     void SpawnEnemy()
     {
-        float randomX = Random.Range(-xSpawnMin, xSpawnMax);
         int randomIndex = Random.Range(0, enemies.Length);
+        float enemyX = enemies[randomIndex].gameObject.transform.position.x;
 
-        Vector3 spawnPos = new Vector3(randomX, ySpawn, zEnemySpawn);
+        Vector3 spawnPos = new Vector3(enemyX, ySpawn, zEnemySpawn);
 
         Instantiate(enemies[randomIndex], spawnPos, enemies[randomIndex].gameObject.transform.rotation);
     }
