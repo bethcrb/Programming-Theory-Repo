@@ -7,10 +7,12 @@ public class PlayerController : MonoBehaviour
 
     public float speed = 10.0f;
 
+    public Vector3 startPos = new Vector3(-8.0f, 0.0f, 0.0f);
+
     private int maxHealth = 100;
     private int powerupHealth = 10;
 
-    private float zBound = 6.0f;
+    private float zBound = 8.0f;
 
     private Rigidbody playerRb;
 

@@ -23,7 +23,7 @@ public class Enemy : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Player"))
         {
-            playerController.gameObject.transform.position -= Vector3.right * 5.0f;
+            playerController.gameObject.transform.position = playerController.startPos;
         }
     }
 }
