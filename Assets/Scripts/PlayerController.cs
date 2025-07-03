@@ -4,8 +4,14 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public int health = 100;
-    [SerializeField] private float speed = 10.0f;
+
+    public float speed = 10.0f;
+
+    private int maxHealth = 100;
+    private int powerupHealth = 10;
+
     private float zBound = 6.0f;
+
     private Rigidbody playerRb;
 
 
@@ -52,6 +58,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Powerup"))
         {
             Destroy(other.gameObject);
+            AddHealth(powerupHealth);
         }
     }
 
@@ -75,8 +82,17 @@ public class PlayerController : MonoBehaviour
                 Bus bus = collision.gameObject.GetComponent<Bus>();
                 bus.DealDamage();
             }
-            
+
             Debug.Log("Player has collided with " + enemyName);
+        }
+    }
+
+    private void AddHealth(int addHealth = 0)
+    {
+        health += addHealth;
+        if (health > maxHealth)
+        {
+            health = maxHealth;
         }
     }
 }

@@ -14,4 +14,16 @@ public class Enemy : MonoBehaviour
     {
         playerController.health -= 5;
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Destroy(collision.gameObject);
+        }
+        else if (collision.gameObject.CompareTag("Player"))
+        {
+            playerController.gameObject.transform.position -= Vector3.right * 5.0f;
+        }
+    }
 }
