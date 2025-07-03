@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public int health = 100;
     [SerializeField] private float speed = 10.0f;
     private float zBound = 6.0f;
     private Rigidbody playerRb;
@@ -57,6 +58,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
+            Enemy.DealDamage(10);
             Debug.Log("Player has collided with enemy");
         }
     }
