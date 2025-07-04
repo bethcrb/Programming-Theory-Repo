@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
 
     private float zBound = 5.0f;
 
+    private GameManager gameManager;
+    private Animator playerAnim;
     private Rigidbody playerRb;
 
 
@@ -23,12 +25,17 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         playerRb = GetComponent<Rigidbody>();
+        playerAnim = GetComponentInChildren<Animator>();
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        MovePlayer();
+        if (gameManager.isGameActive)
+        {
+            MovePlayer();
+        }
         ConstrainPlayerPosition();
     }
 
@@ -95,15 +102,26 @@ public class PlayerController : MonoBehaviour
 
     private void AddHealth(int addHealth = 0)
     {
-        health += addHealth;
-        if (health > maxHealth)
+        if (gameManager.isGameActive)
         {
-            health = maxHealth;
+            health += addHealth;
+            if (health > maxHealth)
+            {
+                health = maxHealth;
+            }
         }
     }
 
     private void AddScore()
     {
-        score += 10;
+        if (gameManager.isGameActive)
+        {
+            score += 10;
+        }
+    }
+
+    public void SitDown()
+    {
+        playerAnim.SetBool("Sit_b", true);
     }
 }

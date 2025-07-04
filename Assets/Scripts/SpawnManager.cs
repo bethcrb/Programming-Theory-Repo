@@ -15,11 +15,15 @@ public class SpawnManager : MonoBehaviour
     private float enemySpawnTime = 2.0f;
     private float startDelay = 2.0f;
 
+    private GameManager gameManager;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         InvokeRepeating("SpawnEnemy", startDelay, enemySpawnTime);
         InvokeRepeating("SpawnPowerup", startDelay, powerupSpawnTime);
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -30,21 +34,26 @@ public class SpawnManager : MonoBehaviour
 
     void SpawnEnemy()
     {
-        int randomIndex = Random.Range(0, enemies.Length);
-        float enemyX = enemies[randomIndex].gameObject.transform.position.x;
+        if (gameManager.isGameActive) {
+            int randomIndex = Random.Range(0, enemies.Length);
+            float enemyX = enemies[randomIndex].gameObject.transform.position.x;
 
-        Vector3 spawnPos = new Vector3(enemyX, ySpawn, zEnemySpawn);
+            Vector3 spawnPos = new Vector3(enemyX, ySpawn, zEnemySpawn);
 
-        Instantiate(enemies[randomIndex], spawnPos, enemies[randomIndex].gameObject.transform.rotation);
+            Instantiate(enemies[randomIndex], spawnPos, enemies[randomIndex].gameObject.transform.rotation);
+        }
     }
 
     void SpawnPowerup()
     {
-        float randomX = Random.Range(-xSpawnRange, xSpawnRange);
-        float randomZ = Random.Range(-zPowerupRange, zPowerupRange);
+        if (gameManager.isGameActive)
+        {
+            float randomX = Random.Range(-xSpawnRange, xSpawnRange);
+            float randomZ = Random.Range(-zPowerupRange, zPowerupRange);
 
-        Vector3 spawnPos = new Vector3(randomX, ySpawn, randomZ);
+            Vector3 spawnPos = new Vector3(randomX, ySpawn, randomZ);
 
-        Instantiate(powerup, spawnPos, powerup.gameObject.transform.rotation);
+            Instantiate(powerup, spawnPos, powerup.gameObject.transform.rotation);
+        }
     }
 }
