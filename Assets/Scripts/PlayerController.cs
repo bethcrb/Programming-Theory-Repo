@@ -1,9 +1,11 @@
 using System;
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     public int health = 100;
+    public int score = 0;
 
     public float speed = 10.0f;
 
@@ -38,6 +40,10 @@ public class PlayerController : MonoBehaviour
 
         playerRb.AddForce(Vector3.forward * speed * verticalInput);
         playerRb.AddForce(Vector3.right * speed * horizontalInput);
+        if (horizontalInput > 0 || verticalInput > 0)
+        {
+            AddScore();
+        }
     }
 
     // Prevent the player from leaving the top or bottom of the screen
@@ -94,5 +100,10 @@ public class PlayerController : MonoBehaviour
         {
             health = maxHealth;
         }
+    }
+
+    private void AddScore()
+    {
+        score += 10;
     }
 }
