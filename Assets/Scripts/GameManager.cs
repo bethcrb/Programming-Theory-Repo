@@ -15,6 +15,12 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        healthLeftText.text = GameObject.Find("Player").GetComponent<PlayerController>().health.ToString();   
+        PlayerController playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        if (playerController.health <= 0)
+        {
+            playerController.health = 0;
+            healthLeftText.color = new Color32(255, 0, 0, 255);
+        }
+        healthLeftText.text = playerController.health.ToString();
     }
 }
