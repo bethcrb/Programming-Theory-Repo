@@ -4,6 +4,6 @@ public class Van : Enemy
 {
     public override void DealDamage()
     {
-        playerController.health -= 7;
+        playerController.health -= 10;
     }
 }

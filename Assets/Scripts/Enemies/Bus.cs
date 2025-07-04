@@ -4,6 +4,6 @@ public class Bus : Enemy
 {
     public override void DealDamage()
     {
-        playerController.health -= 10;
+        playerController.health -= 20;
     }
 }
