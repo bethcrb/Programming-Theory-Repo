@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     private int maxHealth = 100;
     private int powerupHealth = 10;
 
-    private float zBound = 8.0f;
+    private float zBound = 5.0f;
 
     private Rigidbody playerRb;
 
@@ -84,8 +84,6 @@ public class PlayerController : MonoBehaviour
                 Bus bus = collision.gameObject.GetComponent<Bus>();
                 bus.DealDamage();
             }
-
-            Debug.Log("Player has collided with " + enemyName);
         }
     }
 
