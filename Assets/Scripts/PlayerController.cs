@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public int health = 100;
-    public int score = 0;
 
     public float speed = 10.0f;
 
@@ -49,7 +48,7 @@ public class PlayerController : MonoBehaviour
         playerRb.AddForce(Vector3.right * speed * horizontalInput);
         if (horizontalInput > 0 || verticalInput > 0)
         {
-            AddScore();
+            gameManager.UpdateScore();
         }
     }
 
@@ -109,14 +108,6 @@ public class PlayerController : MonoBehaviour
             {
                 health = maxHealth;
             }
-        }
-    }
-
-    private void AddScore()
-    {
-        if (gameManager.isGameActive)
-        {
-            score += 10;
         }
     }
 
