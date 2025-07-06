@@ -36,9 +36,9 @@ public class PlayerController : MonoBehaviour
     {
         if (gameManager.isGameActive)
         {
-            MovePlayer();
+            MovePlayer(); // ABSTRACTION
         }
-        ConstrainPlayerPosition();
+        ConstrainPlayerPosition(); // ABSTRACTION
     }
 
     // Moves the player based on arrow key input

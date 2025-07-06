@@ -3,17 +3,19 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public bool isGameActive { get; private set; } // ENCAPSULATION
+
     public AudioClip gameOverSound;
-    public bool isGameActive;
 
-    public int score;
-
-    public PlayerController playerController;
     public TextMeshProUGUI gameOverText;
     public TextMeshProUGUI healthText;
     public TextMeshProUGUI scoreText;
 
     private AudioSource gameAudio;
+
+    private PlayerController playerController;
+
+    private int score;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -32,7 +34,7 @@ public class GameManager : MonoBehaviour
         healthText.text = "Health: ";
         if (playerController.health <= 0)
         {
-            GameOver();
+            GameOver(); // ABSTRACTION
         }
         healthText.text += playerController.health.ToString();
         scoreText.text = $"Score: {score.ToString()}";
