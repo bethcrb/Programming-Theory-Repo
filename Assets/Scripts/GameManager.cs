@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public AudioClip gameOverSound;
     public bool isGameActive;
 
     public int score;
@@ -12,6 +13,8 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI healthText;
     public TextMeshProUGUI scoreText;
 
+    private AudioSource gameAudio;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -19,6 +22,7 @@ public class GameManager : MonoBehaviour
         healthText.text = "Health: 100";
         scoreText.text = "Score: 0";
         isGameActive = true;
+        gameAudio = GetComponent<AudioSource>();
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
@@ -41,6 +45,7 @@ public class GameManager : MonoBehaviour
         healthText.color = new Color32(255, 0, 0, 255);
         gameOverText.gameObject.SetActive(true);
         playerController.SitDown();
+        gameAudio.PlayOneShot(gameOverSound, 1.0f);
     }
 
     public void UpdateScore(int addScore = 10)

@@ -9,12 +9,14 @@ public class PlayerController : MonoBehaviour
     public float speed = 10.0f;
 
     public Vector3 startPos = new Vector3(-8.0f, 0.0f, 0.0f);
-
+    public AudioClip crashSound;
+    
     private int maxHealth = 100;
     private int powerupHealth = 10;
 
     private float zBound = 5.0f;
 
+    private AudioSource playerAudio;
     private GameManager gameManager;
     private Animator playerAnim;
     private Rigidbody playerRb;
@@ -25,6 +27,7 @@ public class PlayerController : MonoBehaviour
     {
         playerRb = GetComponent<Rigidbody>();
         playerAnim = GetComponentInChildren<Animator>();
+        playerAudio = GetComponent<AudioSource>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
     }
 
@@ -96,6 +99,7 @@ public class PlayerController : MonoBehaviour
                 Bus bus = collision.gameObject.GetComponent<Bus>();
                 bus.DealDamage();
             }
+            playerAudio.PlayOneShot(crashSound, 1.0f);
         }
     }
 
