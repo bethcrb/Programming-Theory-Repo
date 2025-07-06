@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class Bus : Enemy
+public class Bus : Enemy // INHERITANCE
 {
-    public override void DealDamage()
+    public override void DealDamage() // POLYMORPHISM
     {
         playerController.health -= 20;
     }

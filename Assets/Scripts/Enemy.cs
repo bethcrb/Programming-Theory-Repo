@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
-    public virtual void DealDamage()
+    public virtual void DealDamage() // POLYMORPHISM
     {
         playerController.health -= 5;
     }
